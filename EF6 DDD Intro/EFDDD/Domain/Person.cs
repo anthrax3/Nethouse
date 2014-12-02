@@ -33,6 +33,9 @@ namespace EFDDD.Domain
 
         public void Relocate(Address relocateToAddress)
         {
+            if (relocateToAddress == null)
+                throw new ArgumentNullException("relocateToAddress");
+            
             if (Address == relocateToAddress)
                 throw new ArgumentException("The new address must not be equal to the current address","relocateToAddress");
 
@@ -41,6 +44,9 @@ namespace EFDDD.Domain
 
         public void Rename(PersonalName newName)
         {
+            if (newName == null)
+                throw new ArgumentNullException("newName");
+                
             if (PersonalName == newName)
                 throw new ArgumentException("The new name must not be equal to the current name","newName");
 

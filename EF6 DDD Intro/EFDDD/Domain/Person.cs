@@ -10,11 +10,17 @@ namespace EFDDD.Domain
     {
         protected Person()
         {
-            /* intentionally left blank */
+            // this is needed for EF to materialize the object from the database
         }
 
         public Person(PersonalName personalName, Address address)
         {
+            if (personalName == null)
+                throw new ArgumentNullException("personalName");
+
+            if (address == null)
+                throw new ArgumentException("address");
+
             PersonalName = personalName;
             Address = address;
         }

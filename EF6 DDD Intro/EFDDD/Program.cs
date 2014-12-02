@@ -24,6 +24,9 @@ namespace EFDDD
 
                 ctx.Persons.Add(roger);
 
+                roger.Relocate(Address.Of("Foo","Bar","X","Sverige"));
+                roger.Rename(PersonalName.Of("FooBar"));
+
                 ctx.SaveChanges();
             }
             using (var ctx = new MyContext())

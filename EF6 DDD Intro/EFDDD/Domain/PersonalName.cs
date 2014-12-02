@@ -9,14 +9,14 @@ namespace EFDDD.Domain
     public class PersonalName : IEquatable<PersonalName>
     {
         protected PersonalName()
-        {
-            /* intentionally left blank */
+        {            
+            // this is needed for EF to materialize the object from the database
         }
 
         public PersonalName(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException(value);
+                throw new ArgumentException(value,"value");
 
             Value = value;
         }

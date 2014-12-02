@@ -11,23 +11,34 @@ namespace EFDDD.Domain
     {
         protected Address()
         {
-            /* intentionally left blank */
+            // this is needed for EF to materialize the object from the database
         }
 
-        public Address(string city, string street, string stateOrProvince, string country)
+        public Address(string city, string street, string stateOrProvince = null, string country = null)
         {
+            if (string.IsNullOrWhiteSpace(city))
+                throw new ArgumentException("city");
+
+            if (string.IsNullOrWhiteSpace(street))
+                throw new ArgumentException("street");
+            
+            // we leave stateOrProvince and country as optional
+
             City = city;
             Street = street;
             StateOrProvince = stateOrProvince;
             Country = country;
         }
 
+        // This has potential for even more refined types
+        // Eg Country, however, refining types comes at a cost of lines of code in C#
+        // In this example, we stop here
         public string City { get; private set; }
         public string Street { get; private set; }
         public string StateOrProvince { get; private set; }
         public string Country { get; private set; }
 
-        public static Address Of(string city, string street, string stateOrProvince, string country)
+        public static Address Of(string city, string street, string stateOrProvince = null, string country = null)
         {
             return new Address(city, street, stateOrProvince, country);
         }
